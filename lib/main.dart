@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:newsapp/layout/news_app/cubit/cubit.dart';
 import 'package:newsapp/shared/Appcubit/cubit.dart';
 import 'package:newsapp/shared/Appcubit/states.dart';
 import 'package:newsapp/shared/blocObserver.dart';
@@ -28,8 +29,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => NewsCubit()..getbusiness()),
+        BlocProvider(
+          create: (context) => AppCubit(),
+        )
+      ],
       child: BlocConsumer<AppCubit, Appstates>(
         listener: (context, state) {},
         builder: (context, state) {

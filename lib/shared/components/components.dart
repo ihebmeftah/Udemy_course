@@ -53,46 +53,49 @@ Widget defaultTextFormField({
           ),
           hintText: htext),
     );
-Widget buildArticleItem(article, context) => Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Row(
-        children: [
-          Container(
-              height: 120.0,
-              width: 120.0,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                      image: NetworkImage('${article['urlToImage']}'),
-                      fit: BoxFit.cover))),
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Container(
-              height: 120,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: [
-                  Expanded(
-                    child: Text(
-                      '${article['title']}',
-                      style: Theme.of(context).textTheme.bodyText1,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Text(
-                    '${article['publishedAt']}',
-                    style: const TextStyle(color: Colors.grey),
-                  )
-                ],
-              ),
+Widget buildArticleItem(article, context) => InkWell(
+      
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          children: [
+            Container(
+                height: 120.0,
+                width: 120.0,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: NetworkImage('${article['urlToImage']}'),
+                        fit: BoxFit.cover))),
+            const SizedBox(
+              width: 20,
             ),
-          )
-        ],
+            Expanded(
+              child: Container(
+                height: 120,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '${article['title']}',
+                        style: Theme.of(context).textTheme.bodyText1,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Text(
+                      '${article['publishedAt']}',
+                      style: const TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
 Widget myDiv() => Padding(

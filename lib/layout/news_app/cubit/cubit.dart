@@ -5,7 +5,6 @@ import 'package:newsapp/layout/news_app/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/modules/business/business_screen.dart';
 import 'package:newsapp/modules/sciences/sciences_screen.dart';
-import 'package:newsapp/modules/setting/setting.dart';
 import 'package:newsapp/modules/sports/sports_screen.dart';
 import 'package:newsapp/shared/network/remote/diohelper.dart';
 
@@ -19,16 +18,11 @@ class NewsCubit extends Cubit<NewsStates> {
     BusinessScreen(),
     SportsScreen(),
     SciencesScreen(),
-    SettingScreen()
   ];
   List<BottomNavigationBarItem> bottomNavitem = [
     BottomNavigationBarItem(icon: Icon(Icons.business), label: "Business"),
     BottomNavigationBarItem(icon: Icon(Icons.sports), label: "Sport"),
     BottomNavigationBarItem(icon: Icon(Icons.science), label: "Science"),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: "Setting",
-    )
   ];
 
   void toggelbottomNavitem(int index) {
@@ -46,7 +40,6 @@ class NewsCubit extends Cubit<NewsStates> {
     Diohelper.getData(
       url: 'v2/top-headlines',
       query: {
-        'country': 'gb',
         'apiKey': '8812bfd53d9547078b1ebeb8f764d55b',
         'category': 'business'
       },
@@ -69,7 +62,6 @@ class NewsCubit extends Cubit<NewsStates> {
       Diohelper.getData(
         url: 'v2/top-headlines',
         query: {
-          'country': 'gb',
           'apiKey': '8812bfd53d9547078b1ebeb8f764d55b',
           'category': 'sports'
         },
@@ -95,7 +87,6 @@ class NewsCubit extends Cubit<NewsStates> {
       Diohelper.getData(
         url: 'v2/top-headlines',
         query: {
-          'country': 'gb',
           'apiKey': '8812bfd53d9547078b1ebeb8f764d55b',
           'category': 'science'
         },
