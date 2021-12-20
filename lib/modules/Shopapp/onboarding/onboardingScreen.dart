@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:newsapp/models/boardingModel.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -11,6 +12,20 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  List<BoardingModel> boarding = [
+    BoardingModel(
+        icon: FontAwesomeIcons.store,
+        title: 'On board title 1 ',
+        body: 'On board body 1 '),
+    BoardingModel(
+        icon: FontAwesomeIcons.shopify,
+        title: 'On board title 2 ',
+        body: 'On board body 2 '),
+    BoardingModel(
+        icon: FontAwesomeIcons.creditCard,
+        title: 'On board title 3 ',
+        body: 'On board body 3 ')
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +36,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
-                itemBuilder: (context, index) => BuildBoardingItem(),
-                itemCount: 3,
+                physics: BouncingScrollPhysics(),
+                itemBuilder: (context, index) =>
+                    BuildBoardingItem(boarding[index]),
+                itemCount: boarding.length,
               ),
             ),
             SizedBox(
@@ -46,13 +63,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget BuildBoardingItem() => Column(
+  Widget BuildBoardingItem(BoardingModel model) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Center(
               child: Icon(
-                FontAwesomeIcons.store,
+                model.icon,
                 size: 80,
               ),
             ),
@@ -60,12 +77,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           SizedBox(
             height: 30,
           ),
-          Text('Screen Title',
+          Text(model.title,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           SizedBox(
             height: 30,
           ),
-          Text('Screen body',
+          Text(model.body,
               style: TextStyle(
                 fontSize: 14,
               ))
