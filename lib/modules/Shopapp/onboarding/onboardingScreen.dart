@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:newsapp/models/boardingModel.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  var boardcontroler = PageController();
   List<BoardingModel> boarding = [
     BoardingModel(
         icon: FontAwesomeIcons.store,
@@ -36,6 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
+                controller: boardcontroler,
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) =>
                     BuildBoardingItem(boarding[index]),
@@ -47,10 +50,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             Row(
               children: [
-                Text('indicator'),
+                SmoothPageIndicator(
+                    controller: boardcontroler,
+                    count: boarding.length,
+                    effect: WormEffect()),
                 Spacer(),
                 FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    boardcontroler.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.fastLinearToSlowEaseIn);
+                  },
                   child: Icon(
                     FontAwesomeIcons.arrowRight,
                   ),
