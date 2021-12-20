@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +10,7 @@ import 'package:newsapp/shared/network/local/cache_helper.dart';
 import 'package:newsapp/shared/network/remote/diohelper.dart';
 import 'package:newsapp/shared/styles/theme.dart';
 import 'layout/newslayout/news_app/news_layout.dart';
+import 'modules/Shopapp/onboarding/onboardingScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
             darkTheme: darkTheme,
             themeMode:
                 AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            home: const NewsLayout(),
+            home: const OnboardingScreen(),
             debugShowCheckedModeBanner: false,
           );
         },
