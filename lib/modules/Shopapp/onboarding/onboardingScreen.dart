@@ -53,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 SmoothPageIndicator(
                     controller: boardcontroler,
                     count: boarding.length,
-                    effect: WormEffect()),
+                    effect: JumpingDotEffect()),
                 Spacer(),
                 FloatingActionButton(
                   onPressed: () {
