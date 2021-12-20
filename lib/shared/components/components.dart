@@ -54,7 +54,6 @@ Widget defaultTextFormField({
           hintText: htext),
     );
 Widget buildArticleItem(article, context) => InkWell(
-      
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
@@ -126,4 +125,10 @@ void navigate(context, widget) => Navigator.push(
       MaterialPageRoute(
         builder: (context) => widget,
       ),
+    );
+
+void pushAndRemoveUntil(context, widget) => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+      (route) => false,
     );

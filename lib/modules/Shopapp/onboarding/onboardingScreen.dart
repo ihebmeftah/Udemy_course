@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:newsapp/models/boardingModel.dart';
+import 'package:newsapp/modules/Shopapp/login/login.dart';
+import 'package:newsapp/shared/components/components.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -14,6 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   var boardcontroler = PageController();
+  bool islast = false;
   List<BoardingModel> boarding = [
     BoardingModel(
         icon: FontAwesomeIcons.store,
@@ -38,6 +41,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
+                onPageChanged: (int index) {
+                  if (index == boarding.length - 1) {
+                    setState(() {
+                      islast = true;
+                    });
+                  } else {
+                    setState(() {
+                      islast = false;
+                    });
+                  }
+                },
                 controller: boardcontroler,
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) =>
@@ -50,16 +64,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             Row(
               children: [
-                SmoothPageIndicator(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SmoothPageIndicator(
                     controller: boardcontroler,
                     count: boarding.length,
-                    effect: JumpingDotEffect()),
+                    effect: ExpandingDotsEffect(
+                        activeDotColor: Colors.orange, spacing: 10),
+                  ),
+                ),
                 Spacer(),
                 FloatingActionButton(
                   onPressed: () {
-                    boardcontroler.nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.fastLinearToSlowEaseIn);
+                    if (islast) {
+                      pushAndRemoveUntil(context, Login());
+                    } else {
+                      boardcontroler.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.fastLinearToSlowEaseIn);
+                    }
                   },
                   child: Icon(
                     FontAwesomeIcons.arrowRight,
