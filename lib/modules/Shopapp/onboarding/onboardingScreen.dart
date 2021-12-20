@@ -31,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(28.0),
         child: Column(
           children: [
             Expanded(
@@ -70,22 +70,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Center(
               child: Icon(
                 model.icon,
-                size: 80,
+                size: 200,
               ),
             ),
           ),
           SizedBox(
             height: 30,
           ),
-          Text(model.title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          Center(
+            child: Text(model.title,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ),
           SizedBox(
             height: 30,
           ),
-          Text(model.body,
-              style: TextStyle(
-                fontSize: 14,
-              ))
+          Center(
+            child: Text(model.body,
+                style: TextStyle(
+                  fontSize: 14,
+                )),
+          ),
+          SizedBox(
+            height: 30,
+          ),
         ],
       );
 }
