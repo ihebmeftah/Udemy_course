@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsapp/layout/news_app/cubit/cubit.dart';
-import 'package:newsapp/layout/news_app/cubit/states.dart';
+import 'package:newsapp/layout/newslayout/news_app/cubit/cubit.dart';
+import 'package:newsapp/layout/newslayout/news_app/cubit/states.dart';
 import 'package:newsapp/shared/components/components.dart';
 
 class Searchscreen extends StatelessWidget {

@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, avoid_print
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsapp/layout/news_app/cubit/states.dart';
+import 'package:newsapp/layout/newslayout/news_app/cubit/states.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/modules/business/business_screen.dart';
-import 'package:newsapp/modules/sciences/sciences_screen.dart';
-import 'package:newsapp/modules/sports/sports_screen.dart';
+import 'package:newsapp/modules/newsapp/business/business_screen.dart';
+import 'package:newsapp/modules/newsapp/sciences/sciences_screen.dart';
+import 'package:newsapp/modules/newsapp/sports/sports_screen.dart';
 import 'package:newsapp/shared/network/remote/diohelper.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
