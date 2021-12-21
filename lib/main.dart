@@ -16,14 +16,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   BlocOverrides.runZoned(
     () {
-      // Use blocs...
+      runApp(MyApp());
     },
     blocObserver: MyBlocObserver(),
   );
   await CacheHelper.init();
   Diohelper.init();
-
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/modules/Shopapp/login/logincubit/states.dart';
 import 'package:newsapp/shared/endPoints.dart';
@@ -18,5 +19,15 @@ class Logincubit extends Cubit<LoginStates> {
     }).catchError((onError) {
       emit(LoginErrorStates(onError.toString()));
     });
+  }
+
+  IconData suffin = Icons.visibility;
+  bool isPassShow = false;
+
+  void changepasswordvisibilty() {
+    isPassShow = !isPassShow;
+
+    suffin = isPassShow ? Icons.visibility : Icons.visibility_off;
+    emit(VisiblePassword());
   }
 }
