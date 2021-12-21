@@ -34,7 +34,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          TextButton(
+              onPressed: () {
+                pushAndRemoveUntil(context, Login());
+              },
+              child: Text('SKIP'))
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(28.0),
         child: Column(
@@ -81,7 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     } else {
                       boardcontroler.nextPage(
                           duration: Duration(milliseconds: 500),
-                          curve: Curves.fastLinearToSlowEaseIn);
+                          curve: Curves.easeInOutQuint);
                     }
                   },
                   child: Icon(
