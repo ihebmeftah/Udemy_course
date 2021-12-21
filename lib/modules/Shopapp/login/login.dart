@@ -27,6 +27,9 @@ class _LoginState extends State<Login> {
                   'LOGIN',
                   style: Theme.of(context).textTheme.headline5,
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Text(
                   'Login now to browse our hot offers',
                   style: Theme.of(context)
