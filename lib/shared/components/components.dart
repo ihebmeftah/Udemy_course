@@ -49,7 +49,7 @@ Widget defaultTextFormField({
             color: Colors.black,
           ),
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           hintText: htext),
     );
