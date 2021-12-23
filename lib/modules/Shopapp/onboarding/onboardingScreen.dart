@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:newsapp/models/boardingModel.dart';
 import 'package:newsapp/modules/Shopapp/login/login.dart';
 import 'package:newsapp/shared/components/components.dart';
+import 'package:newsapp/shared/network/local/cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -17,6 +18,14 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   var boardcontroler = PageController();
   bool islast = false;
+  void submit() {
+    CacheHelper.saveData(key: 'onboarding', value: true).then((value) {
+      if (value!) {
+        pushAndRemoveUntil(context, Login());
+      }
+    });
+  }
+
   List<BoardingModel> boarding = [
     BoardingModel(
         icon: FontAwesomeIcons.store,
@@ -35,13 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          TextButton(
-              onPressed: () {
-                pushAndRemoveUntil(context, Login());
-              },
-              child: Text('SKIP'))
-        ],
+        actions: [TextButton(onPressed: submit, child: Text('SKIP'))],
       ),
       body: Padding(
         padding: const EdgeInsets.all(28.0),
@@ -85,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (islast) {
-                      pushAndRemoveUntil(context, Login());
+                      submit();
                     } else {
                       boardcontroler.nextPage(
                           duration: Duration(milliseconds: 500),
